@@ -7,8 +7,10 @@ export const createPlanta = async (data: Prisma.PlantaCreateInput) => {
     });
 };
 
-export const findAllPlantas = async () => {
-    return await prisma.planta.findMany();
+export const findAllPlantas = async (filters: Prisma.PlantaWhereInput = {}) => {
+    return await prisma.planta.findMany({
+        where: filters
+    });
 };
 
 export const findPlantaById = async (id: number) => {
