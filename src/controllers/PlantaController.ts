@@ -75,12 +75,12 @@ export const createPlanta = async (req: Request, res: Response) => {
 export const readAllPlantas = async (req: Request, res: Response) => {
   try {
     const { luminosidade, petFriendly } = req.query;
-    if (luminosidade !== undefined && (!Object.values(Luminosidade).includes(luminosidade as Luminosidade))){
+    if (luminosidade !== undefined && (!Object.values(Luminosidade).includes(luminosidade as Luminosidade))) {
       return res.status(400).json({
         message: "Luminosidade deve ser SOMBRA, MEIA_SOMBRA ou SOL_PLENO"
       });
     }
-    if (petFriendly !== undefined && petFriendly !== "true" && petFriendly !== "false"){
+    if (petFriendly !== undefined && petFriendly !== "true" && petFriendly !== "false") {
       return res.status(400).json({
         message: "petFriendly deve ser true ou false"
       });
@@ -90,7 +90,7 @@ export const readAllPlantas = async (req: Request, res: Response) => {
     if (petFriendly === "true") {
       petFriendlyFiltro = true;
     }
-    if (petFriendly === "false"){
+    if (petFriendly === "false") {
       petFriendlyFiltro = false;
     }
 
@@ -227,5 +227,48 @@ export const deletePlanta = async (req: Request, res: Response) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Erro ao deletar planta." });
+  }
+};
+
+export const vendaPlanta = async (req: Request, res: Response) => {
+  try {
+    const id = Number(req.params.id);
+
+    if (!Number.isInteger(id) || id <= 0) {
+      return res.status(400).json({
+        message: "id inválido"
+      });
+    }
+
+    const { quantidade } = req.body ?? {};
+
+    if (!Number.isInteger(quantidade) || quantidade <= 0) {
+      return res.status(400).json({
+        message: "A quantidade deve ser um inteiro maior que zero"
+      });
+    }
+
+    const planta = await PlantaRepository.findPlantaById(id);
+
+    if (!planta) {
+      return res.status(404).json({ message: "Planta não encontrada." });
+    }
+
+    const estoque = planta.estoque;
+
+    if (estoque < quantidade) {
+      return res.status(400).json({
+        message: `Temos só ${estoque} plantas.`
+      });
+    }
+
+    const plantaAtualizada = await PlantaRepository.vendaPlanta(id, quantidade);
+
+    return res.status(200).json(plantaAtualizada);
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Erro ao finalizar a venda." 
+  });
   }
 };
