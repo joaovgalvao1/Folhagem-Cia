@@ -26,7 +26,7 @@
 - 3.2: O vs code estava sublinhando um erro em prisma.planta, reiniciei o servidor do typescript e o erro parou
 - 3.3: No createPlanta eu encontrei alguns erros na validação dos dados, mas com a IA consegui entender e consegui fazer a correção
 - 3.4: Não tive dificuldade nessa fase
-- 3.5: Tive dificuldade para converter o texto do petFriendly em booleano, pois a IA seguiriu usar um operador ternário. Preferi resolver com dois if simples e criando uma variável nova.
+- 3.5: Tive dificuldade para converter o texto do petFriendly em booleano, pois a IA sugeriu usar um operador ternário. Preferi resolver com dois if simples e criando uma variável nova.
 - 3.6: Tive dificuldade na sintaxe de colocar a variável dentro da mensagem de return, tirei essa dúvida na IA
 - 3.7: Não tive dificuldade nessa fase
 
