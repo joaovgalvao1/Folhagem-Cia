@@ -37,3 +37,5 @@
 - Para correção: Usei como correção no final de todas as fases e, assim como na parte de revisão, usei para entender o erro e me guiar com passo a passo para fazer a versão corrigida do código
 - Para comandos de terminal: Já sabia como usar o básico de git, mas precisei de ajuda para entender yarn e docker. 
 - Nos testes: A IA reuniu os testes do PDF e montou as mensagens para eu rodar no Thunder Client; eu executei e conferi os resultados.
+- Como conferi: rodei yarn typecheck a cada etapa, comparei com o código de usuário, li as migrations e testei no Thunder Client o CRUD, os filtros, a venda e o valor total (conferindo a conta na mão)
+- O que aprendi: como uma API de back-end funciona, como construir um CRUD completo com validações e regras de negócio, a sintaxe e a lógica de uma nova linguagem (TypeScript) e a usar ferramentas novas como yarn, docker, Prisma e Thunder Client
