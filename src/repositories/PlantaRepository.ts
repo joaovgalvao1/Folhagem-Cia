@@ -35,6 +35,12 @@ export const deletePlanta = async (id: number) => {
 export const vendaPlanta = async (id: number, quantidade: number) => {
     return await prisma.planta.update({
         where: { id: id },
-        data: { estoque: {decrement: quantidade}}
+        data: { estoque: { decrement: quantidade } }
+    });
+};
+
+export const findPrecoEEstoque = async () => {
+    return await prisma.planta.findMany({
+        select: { preco: true, estoque: true },
     });
 };
